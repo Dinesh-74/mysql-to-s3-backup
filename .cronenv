@@ -1,0 +1,2 @@
+JOB_PATH="./run_s3.sh" # path to the script
+LOG_PATH="~/aws/logs/cron_log.log"
