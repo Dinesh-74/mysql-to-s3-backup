@@ -25,10 +25,13 @@ elif [ $ADJUSTED_MINUTES -ge 60 ]; then
 fi
 
 # Calculate the cron times based on the adjusted hours for every 6-hour interval
-CRON_HOURS=$(( (24 + ADJUSTED_HOURS) % 6 ))
+HOUR_1=$(( (24 + ADJUSTED_HOURS) % 24 ))
+HOUR_2=$(( (HOUR_1 + 6) % 24 ))
+HOUR_3=$(( (HOUR_1 + 12) % 24 ))
+HOUR_4=$(( (HOUR_1 + 18) % 24 ))
 
 # Generate the final cron schedule using the adjusted hours and minutes
-CRON_SCHEDULE="$ADJUSTED_MINUTES $CRON_HOURS,((CRON_HOURS+6)%24),((CRON_HOURS+12)%24),((CRON_HOURS+18)%24) * * *"
+CRON_SCHEDULE="$ADJUSTED_MINUTES $HOUR_1,$HOUR_2,$HOUR_3,$HOUR_4 * * *"
 
 # Ensure the cron job does not already exist
 (crontab -l | grep -v "$JOB_PATH") | crontab -
