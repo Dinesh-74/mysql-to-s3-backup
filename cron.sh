@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ./.cronenv
+
 # Calculate the offset between IST and the system timezone
 IST_OFFSET_HOURS=5
 IST_OFFSET_MINUTES=30
