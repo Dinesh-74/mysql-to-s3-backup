@@ -54,16 +54,28 @@ done
 
 # Create .backupenv file
 BACKUP_ENV_FILE=".backupenv"
-echo "Creating $BACKUP_ENV_FILE..."
+# Function to get user input with validation
+get_input() {
+    local var_name="$1"
+    local prompt="$2"
+    local value=""
+    while [ -z "$value" ]; do
+        read -p "$prompt" value
+        if [ -z "$value" ]; then
+            echo "$var_name cannot be empty. Please enter a valid value."
+        fi
+    done
+    echo "$value"
+}
 
-read -p "Enter AWS Access Key: " AWS_ACCESS_KEY
-read -p "Enter AWS Secret Key: " AWS_SECRET_KEY
-read -p "Enter S3 Bucket Name: " S3_BUCKET
-read -p "Enter Number of Backups to Keep: " BACKUPS_TO_KEEP
-read -p "Enter Database Username: " DB_USER
-read -p "Enter Database Password: " DB_PASS
-read -p "Enter Database Host (e.g., 127.0.0.1): " DB_HOST
-read -p "Enter Server Name (e.g., testingmysql): " SERVER_NAME
+AWS_ACCESS_KEY=$(get_input "AWS Access Key" "Enter AWS Access Key: ")
+AWS_SECRET_KEY=$(get_input "AWS Secret Key" "Enter AWS Secret Key: ")
+S3_BUCKET=$(get_input "S3 Bucket Name" "Enter S3 Bucket Name: ")
+BACKUPS_TO_KEEP=$(get_input "Number of Backups to Keep" "Enter Number of Backups to Keep: ")
+DB_USER=$(get_input "Database Username" "Enter Database Username: ")
+DB_PASS=$(get_input "Database Password" "Enter Database Password: ")
+DB_HOST=$(get_input "Database Host" "Enter Database Host (e.g., 127.0.0.1): ")
+SERVER_NAME=$(get_input "Server Name" "Enter Server Name (e.g., testingmysql): ")
 
 cat > $BACKUP_ENV_FILE <<EOL
 # AWS Credentials

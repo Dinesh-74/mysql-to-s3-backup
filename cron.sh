@@ -11,8 +11,6 @@ if [ ! -d "$(dirname "$LOG_PATH")" ]; then
     mkdir -p "$(dirname "$LOG_PATH")"
 fi
 
-export USER_HOME=$(eval echo "~$USER")
-
 # Calculate the offset between IST and the system timezone
 IST_OFFSET_HOURS=5
 IST_OFFSET_MINUTES=30
