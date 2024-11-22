@@ -95,5 +95,15 @@ EOL
 
 echo "$CRON_ENV_FILE created successfully!"
 
+echo "Activating cronjob"
+# Check if cron.sh exists and has execute permissions
+if [ -f ./cron.sh ]; then
+    echo "Activating cronjob..."
+    ./cron.sh
+else
+    echo "Error: cron.sh not found in the current directory."
+    exit 1
+fi
+
 # Usage Reminder
 echo "To activate the virtual environment, run: source $VENV_DIR/bin/activate"
