@@ -3,9 +3,9 @@
 source ./.backupenv
 
 # Variables
-BACKUP_DIR="~/aws/backups/mysqlbackup"
-LOG_FILE="~/aws/logs/backup_log.log"
-ERROR_LOG_FILE="$~/aws/logs/backup_error_log.log"
+BACKUP_DIR="$HOME/aws/backups/mysqlbackup"
+LOG_FILE="$HOME/aws/logs/backup_log.log"
+ERROR_LOG_FILE="$HOME/aws/logs/backup_error_log.log"
 UNIX_TIMESTAMP=$(date +%s)
 TIMESTAMP=$(TZ=Asia/Kolkata date +\%F_\%I-\%M-\%S_\%P)
 
