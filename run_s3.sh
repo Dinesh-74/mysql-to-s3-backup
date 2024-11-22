@@ -20,10 +20,16 @@ if [ ! -d "$BACKUP_DIR" ]; then
     mkdir -p "$BACKUP_DIR"
 fi
 
+# Create the logs directory if it doesn't exist
+if [ ! -d "$LOG_DIR" ]; then
+    mkdir -p "$LOG_DIR"
+fi
+
 # Check if the count file exists, create it if it doesn't
 if [ ! -f "$COUNT_FILE" ]; then
     echo 0 > "$COUNT_FILE"
 fi
+
 
 # Read the current count from the file
 COUNT=$(cat "$COUNT_FILE")
