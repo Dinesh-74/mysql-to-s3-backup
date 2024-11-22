@@ -62,6 +62,9 @@ else
   echo "$(date): Upload to S3 failed" >> "$ERROR_LOG_FILE"
 fi
 
+#Activating the virtual environment
+source $VENV_DIR/bin/activate
+
 # Python script to delete old backups from S3
 python3 - <<EOF >> "$LOG_FILE" 2>> "$ERROR_LOG_FILE"
 import boto3
@@ -106,4 +109,6 @@ except Exception as e:
     print(f"{datetime.datetime.now()}: An error occurred: {e}")
 EOF
 
+# Deactivating the virtual environment
+deactivate
 # End of Script

@@ -1,2 +1,0 @@
-JOB_PATH="$USER_HOME/mysql-to-s3-backup/run_s3.sh" # path to the script
-LOG_PATH="$USER_HOME/aws/logs/cron_log.log"
