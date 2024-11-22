@@ -1,6 +1,17 @@
 #!/bin/bash
 
+if [ ! -f ./.cronenv ]; then
+    echo "Error: .cronenv file not found."
+    exit 1
+fi
+
 source ./.cronenv
+
+if [ ! -d "$(dirname "$LOG_PATH")" ]; then
+    mkdir -p "$(dirname "$LOG_PATH")"
+fi
+
+export USER_HOME=$(eval echo "~$USER")
 
 # Calculate the offset between IST and the system timezone
 IST_OFFSET_HOURS=5
